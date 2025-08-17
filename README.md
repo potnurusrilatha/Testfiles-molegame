@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Whack-a-Mole Game
 
-## Getting Started
+A fun Whack-a-Mole game built with React, TypeScript, TailwindCSS, and tested with Jest + React Testing Library.
 
-First, run the development server:
+Players click the moles that randomly appear on a 3x3 board to earn points before the 30-second timer runs out.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## When Page Loads ![Whack A Mole](./screenshots/snopshot.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Score: 0
+Timer: 30s
+Appear on a 3x3 grid with empty holes
+Start button active, Reset button disabled
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## After Game Starts ![Whack A Mole](./screenshots/snopshott.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Timer counts down from 30s.
+Score updates when moles are clicked.
+Random moles images appear in random holes.
+Reset button becomes available.-
 
-## Learn More
+## How to Play
 
-To learn more about Next.js, take a look at the following resources:
+Start Game: Click Start to reset score and timer and spawn random moles.
+Whack Moles: Click active moles to earn points. Moles disappear after being clicked or after 1 second.
+Reset Game: Click Reset to stop the timer, clear the board, and reset the score to 0.
+Game Over: Timer reaches 0 -> moles stop appearing -> final score remains visible.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+30-second countdown timer.
+Random mole appearances in 3x3 grid.
+Real-time score updates.
+Start and Reset controls.
+Styled with TailwindCSS.
+Tested with Jest + React Testing Library.
 
-## Deploy on Vercel
+## Component	Purpose
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Home Component
+Manages score, timer, and game state
+Passes props to GameBoard and ControlPanel
+Starts and resets the game
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## GameBoard Component
+->Renders 3x3 grid of holes  
+->Randomly spawns 3 moles every second  
+->Handles mole clicks to increment score
+
+## Mole Component
+Clickable mole button  
+Increments score when clicked  
+
+## ControlPanel Component
+Provides Start and Reset buttons  
+Triggers game state changes via parent callbacks  
+
+## ScoreBoard Component
+Displays current score  
+
+## Timer Component
+Shows remaining time  
+
+## Header Component
+Displays game title  
+
+## Footer Component
+Displays developer information 
