@@ -1,4 +1,4 @@
-// File: src/component/GameBoard.tsx
+
 import React, { useEffect, useState } from "react";
 import Mole from "@/component/Mole";
 
@@ -18,7 +18,7 @@ export default function GameBoard({ gameRunning, incrementScore }: GameBoardProp
 
     const interval = setInterval(() => {
       const newHoles = Array(9).fill(null);
-      const moleCount = Math.floor(Math.random() * 3) + 1; // 1-3 moles
+      const moleCount = Math.floor(Math.random() * 3) + 1; 
       const molePositions = new Set<number>();
       while (molePositions.size < moleCount) {
         molePositions.add(Math.floor(Math.random() * 9));
