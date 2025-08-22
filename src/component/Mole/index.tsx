@@ -1,12 +1,17 @@
 import React from 'react';
 
-const Mole = ({onClick}) => {
+interface MoleProps {
+    onClick: () => void;
+}
+
+const Mole = ({onClick}:MoleProps) => {
     return (
      
-            <button data-testid='mole'
+           <img data-testid="mole"
+            src="/mole.png"
+             alt="m" 
              onClick={onClick} 
-             className="w-16 h-16 bg-brown-500 rounded-full shadow-md hover:bg-brown-700 transition duration-300">
-            </button>
+            className="w-16 h-16 cursor-pointer" />
         
 
     )
