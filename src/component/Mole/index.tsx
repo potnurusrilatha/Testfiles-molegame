@@ -12,8 +12,7 @@ const Mole = ({onClick}:MoleProps) => {
              alt="m" 
              onClick={onClick} 
             className="w-16 h-16 cursor-pointer" />
-        
-
-    )
+    );      
 }
+
 export default Mole;
