@@ -1,14 +1,20 @@
 import React from 'react';
 
-const Mole = ({onClick}) => {
-    return (
-     
-            <button data-testid='mole'
-             onClick={onClick} 
-             className="w-16 h-16 bg-brown-500 rounded-full shadow-md hover:bg-brown-700 transition duration-300">
-            </button>
-        
+interface MoleProps {
 
-    )
-}
+    onClick: () => void;
+    }
+
+const Mole = ({ onClick }:MoleProps) => {
+  return (
+    <img
+      src="https://via.placeholder.com/50" 
+      alt="mole"
+      data-testid="mole"
+      className="w-12 h-12 cursor-pointer"
+      onClick={onClick}
+    />
+  );
+};
+
 export default Mole;
