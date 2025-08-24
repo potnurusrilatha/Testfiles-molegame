@@ -1,6 +1,11 @@
 import React from 'react';
 
-const ControlPanel = ({start, reset}) => {
+interface ControlPanelProps {
+    start: () => void;
+    reset: () => void;
+}   
+
+const ControlPanel = ({start, reset}:ControlPanelProps) => {
   return (
     <div className="flex justify-center gap-4 mt-4">
       <button data-testid="start-btn"
