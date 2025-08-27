@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface ControlPanelProps {
-    start: () => void;
-    reset: () => void;
-}   
+import { ControlPanelProps } from '@/utils/types';
 
 const ControlPanel = ({start, reset}:ControlPanelProps) => {
   return (
