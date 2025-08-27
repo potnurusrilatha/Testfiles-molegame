@@ -1,12 +1,6 @@
 import React from 'react';
+import { MoleProps } from '@/utils/types';
 
-<<<<<<< HEAD
-interface MoleProps {
-    onClick: () => void;
-}
-=======
-
->>>>>>> feature/mole
 
 const Mole = ({onClick}:MoleProps) => {
     return (
