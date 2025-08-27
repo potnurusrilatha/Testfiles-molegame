@@ -15,3 +15,7 @@ export type MoleProps = {
 export type ScoreBoardProps = {
   score: number;
 }
+export type FooterProps = {
+    developer?: string;
+    version?: string;
+}
