@@ -1,53 +1,68 @@
+import { useEffect, useState } from 'react';
+import { GameBoardProps, HoleTypeProps } from '@/utils/types';
+import { GameImages } from '@/data/images';
 
-import React, { useEffect, useState } from "react";
-import Mole from "@/component/Mole";
-
-interface GameBoardProps {
-  gameRunning: boolean;
-  incrementScore: () => void;
-}
-
-export default function GameBoard({ gameRunning, incrementScore }: GameBoardProps) {
-  const [holes, setHoles] = useState<(boolean | null)[]>(Array(9).fill(null));
+const GameBoard = ({ gameRunning, incrementScore }: GameBoardProps) => {
+  const [holesState, setHolesState] = useState<HoleTypeProps[]>(
+    Array(9).fill({ value: null }) 
+  );
 
   useEffect(() => {
     if (!gameRunning) {
-      setHoles(Array(9).fill(null));
+      setHolesState(Array(9).fill({ value: null }));
       return;
     }
 
     const interval = setInterval(() => {
-      const newHoles = Array(9).fill(null);
-      const moleCount = Math.floor(Math.random() * 3) + 1; 
-      const molePositions = new Set<number>();
-      while (molePositions.size < moleCount) {
-        molePositions.add(Math.floor(Math.random() * 9));
-      }
-      molePositions.forEach((pos) => {
-        newHoles[pos] = true;
+      const indexes = Array.from({ length: 9 }, (_, i) => i);
+      const shuffled = indexes.sort(() => 0.5 - Math.random());
+      const activeIndexes = shuffled.slice(0, 3); 
+
+      const newHoles: HoleTypeProps[] = holesState.map((_, idx) => {
+        if (activeIndexes.includes(idx)) {
+          return { value: GameImages[Math.floor(Math.random() * GameImages.length)] };
+        }
+        return { value: null };
       });
-      setHoles(newHoles);
+
+      setHolesState(newHoles);
     }, 1000);
 
     return () => clearInterval(interval);
   }, [gameRunning]);
 
+  const handleClick = (idx: number) => {
+    if (!holesState[idx].value) return; 
+
+    incrementScore();
+
+  
+    const newHoles = [...holesState];
+    newHoles[idx] = { value: GameImages[Math.floor(Math.random() * GameImages.length)] };
+    setHolesState(newHoles);
+  };
+
   return (
-    <div className="grid grid-cols-3 gap-4 w-64 mx-auto mt-4">
-      {holes.map((hasMole, index) => (
+    <div data-testid="gameboard" className="max-w-xl grid grid-cols-3 gap-8 my-6 ml-0 lg:ml-100 md:ml-40">
+      {holesState.map((hole, idx) => (
         <div
-          key={index}
+          key={idx}
           data-testid="hole"
-          className="w-16 h-16 border border-gray-400 flex items-center justify-center"
-          onClick={() => {
-            if (hasMole) incrementScore();
-          }}
+          className={`w-20 h-20 rounded-4xl flex items-center justify-center cursor-pointer bg-gray-300`}
+          onClick={() => handleClick(idx)}
         >
-          {hasMole && (
-            <Mole onClick={() => incrementScore()} />
+          {hole.value && (
+            <img
+              src={hole.value}
+              alt="mole"
+              data-testid="mole"
+              className="w-full h-full object-cover rounded-4xl"
+            />
           )}
         </div>
       ))}
     </div>
   );
-}
+};
+
+export default GameBoard;
