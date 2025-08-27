@@ -43,7 +43,7 @@ const GameBoard = ({ gameRunning, incrementScore }: GameBoardProps) => {
   };
 
   return (
-    <div data-testid="gameboard" className="max-w-xl grid grid-cols-3 gap-8 my-6 ml-0 lg:ml-100 md:ml-40">
+    <div data-testid="gameboard-grid" className="max-w-xl grid grid-cols-3 gap-8 my-6 ml-0 lg:ml-100 md:ml-40">
       {holesState.map((hole, idx) => (
         <div
           key={idx}
