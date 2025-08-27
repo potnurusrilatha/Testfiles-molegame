@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import GameBoard from "@/component/GameBoard";
+import Footer from "@/component/Footer";
 
 export default function Home() {
   const [gameRunning, setGameRunning] = useState(false);
@@ -58,6 +59,8 @@ export default function Home() {
           Reset
         </button>
       </div>
+    <Footer /> 
+
     </div>
   );
 }
