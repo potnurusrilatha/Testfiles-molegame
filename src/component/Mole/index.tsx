@@ -1,8 +1,12 @@
 import React from 'react';
 
+<<<<<<< HEAD
 interface MoleProps {
     onClick: () => void;
 }
+=======
+
+>>>>>>> feature/mole
 
 const Mole = ({onClick}:MoleProps) => {
     return (

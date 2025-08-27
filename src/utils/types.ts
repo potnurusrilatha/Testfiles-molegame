@@ -4,4 +4,8 @@ export type HoleTypeProps = {
 export type GameBoardProps = {
   gameRunning: boolean;
   incrementScore: () => void;
+}
+
+export interface MoleProps  {
+    onClick: () => void;
 };
