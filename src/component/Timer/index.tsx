@@ -1,8 +1,10 @@
-const Timer = ({timeLeft=0}) => {
+import { TimerProps } from "@/utils/types"
+
+const Timer = ({timeLeft }: TimerProps) => {
     return (
         <div 
             data-testid="timer"
-            className="text-center font-semibold text-lg mt-4">
+            className="text-center font-semibold text-xl mt-4">
                 Time: {timeLeft}s
             </div>
     )
