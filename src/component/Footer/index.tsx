@@ -1,6 +1,6 @@
-import React from 'react';
+import { FooterProps } from "@/utils/types";
 
-const Footer = ({developer = "kavi", version = "1.0.0"}) => {
+const Footer = ({developer = "Srilatha", version = "1.0.0"}:FooterProps) => {
     return (
         <footer data-testid="footer" className="text-center">
             <p>Developed by {developer}</p>
