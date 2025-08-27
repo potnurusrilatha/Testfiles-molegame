@@ -25,7 +25,8 @@ describe('Footer Component - Renders developer name, version, and current year c
   it('has the correct CSS classes', () => {
     render(<Footer />);
 
-    const footer = screen.getByRole('contentinfo');
+    const footer = screen.getByTestId('footer');
+    screen.getByTestId('footer');
     expect(footer).toHaveClass('text-center');
   });
 
