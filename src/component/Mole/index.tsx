@@ -1,9 +1,6 @@
 import React from 'react';
 
-interface MoleProps {
 
-    onClick: () => void;
-    }
 
 const Mole = ({ onClick }:MoleProps) => {
   return (
