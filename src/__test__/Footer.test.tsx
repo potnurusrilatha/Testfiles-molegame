@@ -9,6 +9,7 @@ describe('Footer Component - Renders developer name, version, and current year c
     const footer = screen.getByTestId('footer');
     expect(footer).toBeInTheDocument();
     expect(footer).toHaveTextContent(/srilatha/i);
+    expect(footer).toHaveTextContent(/version 1\.0\.0/i);
     expect(footer).toHaveTextContent(new Date().getFullYear().toString());
   });
 
