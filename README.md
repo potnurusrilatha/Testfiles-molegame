@@ -83,3 +83,60 @@ Displays developer information
 --> Clicking Reset → score resets, timer resets, moles disappear.
 --> When timer reaches 0 → game ends, no more moles appear.
 --> GameBoard integration → only increments score when mole is clicked, does nothing when clicking an empty hole, clears moles when game stops.
+
+
+
+
+
+
+
+
+
+## FeedBack:
+
+-->You're already testing rendering of components,game start,score increment,reset functionality, and timer decrement.
+
+-->These cover most of the works well
+
+-->Splitting tests into Unit Tests and Integration Tests makes the intent clear.
+
+-->Using jest.useFakeTimers() is great for controlling the game's timing.
+
+-->Good use of queries which are getByTestId, getByRole, and queryAllByTestId ensures clarity in what you're testing.
+
+## Improvements to Current Tests:
+
+-->For better cleanup:After each test, using jest.clearAllTimers() ensures timer state doesn't leak between tests.
+
+## Additional Tests to Add:
+
+. Here are tests you should consider adding for stronger coverage:
+
+-->Ensure score and timer reset to defaults when starting a game.
+
+it("resets score and timer when Start is clicked", () => {
+  render(<Home />);
+  fireEvent.click(screen.getByTestId("start-btn"));
+  expect(screen.getByTestId("score")).toHaveTextContent("Score: 0");
+  expect(screen.getByTestId("timer")).toHaveTextContent("Time: 30s");
+});
+
+
+.The game works fine even without this test, but adding the test strengthens test suite because it verifies an important behavior.
+-->it("does not increment score when clicking before the game starts", () => {
+  render(<Home />);
+  fireEvent.click(screen.getAllByTestId("hole")[0]);
+  expect(screen.getByTestId("score")).toHaveTextContent("Score: 0");
+});
+
+
+Does not increment score when clicking an empty hole during the game
+--> it("does not increment score when clicking an empty hole during the game", () => { 
+    render(<Home />);
+     fireEvent.click(screen.getByTestId("start-btn")); 
+     act(() => { 
+        jest.advanceTimersByTime(1000);
+      }); 
+    const emptyHole = screen.getAllByTestId("hole").find( (hole) => !hole.querySelector("[data-testid='mole']") )!; 
+    fireEvent.click(emptyHole);
+    expect(screen.getByTestId("score")).toHaveTextContent("Score: 0"); });
