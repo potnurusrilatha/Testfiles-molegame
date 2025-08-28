@@ -9,7 +9,7 @@ export type GameBoardProps = {
 }
 
 export type MoleProps = {
-    onClick: () => void;
+  onClick: () => void;
 }
 
 export type ScoreBoardProps = {
@@ -17,10 +17,16 @@ export type ScoreBoardProps = {
 }
 
 export type FooterProps = {
-    developer?: string;
-    version?: string;
+  developer?: string;
+  version?: string;
 }
 
 export type TimerProps = {
-    timeLeft:number;
+  timeLeft:number;
 }
+
+export interface ControlPanelProps {
+  start: () => void;
+  reset: () => void;
+}   
+
